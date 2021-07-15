@@ -1,0 +1,34 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: ds1
+      common:
+        driverClassName: com.mysql.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: xQuant2021
+      ds1:
+        jdbcUrl: jdbc:mysql://localhost:3306/ds-date?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    rules:
+      sharding:
+        binding-tables: t_user,t_date
+        tables:
+          t_user:
+            actualDataNodes: ds1.t_user_$->{0..2}
+            table-strategy:
+              standard:
+                sharding-column: t_date
+                sharding-algorithm-name: table-date
+          t_date:
+            actualDataNodes: ds1.t_date_$->{0..2}
+            table-strategy:
+              standard:
+                sharding-column: t_date
+                sharding-algorithm-name: table-date
+          sharding-algorithms:
+            table-date:
+              type: CLASS_BASED
+              props: {}
+###################### props section #######################
+    props:
+      sql-show: true
