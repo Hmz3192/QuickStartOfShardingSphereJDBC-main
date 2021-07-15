@@ -12,11 +12,7 @@
     <artifactId>boot-mybatis-example</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>replica-query-example</module>
-        <module>sharding-databases-tables-example</module>
         <module>sharding-tables-example</module>
-        <module>sharding-databases-example</module>
-        <module>sharding-replica-query-example</module>
     </modules>
 
     <dependencies>
