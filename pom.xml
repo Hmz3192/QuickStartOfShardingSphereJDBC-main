@@ -8,7 +8,6 @@
     <packaging>pom</packaging>
     <version>5.0.0-alpha</version>
     <modules>
-        <module>row-jdbc-example</module>
         <module>boot-mybatis-example</module>
     </modules>
 
@@ -18,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.locale>zh_CN</project.build.locale>
 
-        <shardingsphere.version>5.0.0-alpha</shardingsphere.version>
+        <shardingsphere.version>5.0.0-beta</shardingsphere.version>
         <spring-boot.version>1.5.20.RELEASE</spring-boot.version>
         <hikari-cp.version>2.4.11</hikari-cp.version>
         <mysql-connector-java.version>5.1.44</mysql-connector-java.version>

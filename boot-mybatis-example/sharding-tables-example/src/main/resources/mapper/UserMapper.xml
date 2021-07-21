@@ -3,13 +3,13 @@
 <mapper namespace="org.shardingtables.mapper.UserMapper">
     <resultMap id="BaseResultMap" type="org.shardingtables.domain.User">
         <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="t_user" property="t_user"/>
-        <result column="t_date" property="t_date"/>
-        <result column="num" jdbcType="BIGINT" property="num"/>
+        <result column="str_user" property="str_user"/>
+        <result column="str_date" property="str_date"/>
+        <result column="str_num" jdbcType="BIGINT" property="str_num"/>
     </resultMap>
     <sql id="Base_Column_List">
         id
-        , t_user, t_date, num
+        , str_user, str_date, str_num
     </sql>
     <select id="showAll" resultMap="BaseResultMap">
         select
@@ -17,15 +17,15 @@
         from t_user
     </select>
     <select id="selectUnion" resultType="org.shardingtables.domain.UserDatePojo">
-        SELECT i.id, i.t_user, i.t_date, i.num, o.t_date u_date
-        FROM (SELECT * FROM t_user WHERE t_date = #{date}) i
-                 LEFT JOIN (SELECT * FROM t_date WHERE t_date = #{date}) o ON o.id = i.id;
-    </select>
+            SELECT * FROM t_user i LEFT JOIN (SELECT * FROM t_date) o
+                                           ON i.id = o.id WHERE i.str_date = #{dDate}
 
+
+    </select>
     <insert id="insert" parameterType="org.shardingtables.domain.User">
-        insert into t_user (id, t_user, t_date, num)
-        values (#{id}, #{t_user}, #{t_date},
-                #{num})
+        insert into t_user (id, str_user, str_date, str_num)
+        values (#{id}, #{str_user}, #{str_date},
+                #{str_num})
     </insert>
     <delete id="deleteUser" parameterType="Long">
         delete

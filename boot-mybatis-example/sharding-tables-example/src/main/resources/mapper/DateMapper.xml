@@ -3,7 +3,9 @@
 <mapper namespace="org.shardingtables.mapper.DateMapper">
     <resultMap id="BaseResultMap" type="org.shardingtables.domain.Tdate">
         <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="t_date" property="t_date"/>
+        <result column="str_date" property="str_date"/>
+        <result column="end_date" property="end_date"/>
+
     </resultMap>
     <sql id="Base_Column_List">
         id, t_date
@@ -11,12 +13,12 @@
     <select id="showAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_date
+        from t_date where str_date <![CDATA[ >= ]]> #{date} AND end_date <![CDATA[ <= ]]> #{endDate}
     </select>
 
-    <insert id="insert" parameterType="org.shardingtables.domain.User">
-        insert into t_date (id, t_date)
-        values (#{id}, #{date})
+    <insert id="insert" parameterType="org.shardingtables.domain.Tdate">
+        insert into t_date (id, str_date,end_date)
+        values (#{id}, #{str_date},#{end_date})
     </insert>
     <delete id="deleteUser" parameterType="Long">
         delete

@@ -1,0 +1,33 @@
+#################### datasource section #######################
+## Configure virtual name of actual data sources
+spring.shardingsphere.datasource.names=ds1
+## In SharingSphere 5.0.0 alpha ,if your Spring Boot version is higher than 2.1.0  you must configure the common datasource to extract the common part
+## This part will be cancelled in the future
+spring.shardingsphere.datasource.common.type=com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.common.driver-class-name=com.mysql.jdbc.Driver
+spring.shardingsphere.datasource.common.username=root
+spring.shardingsphere.datasource.common.password=xQuant2021
+## the datasource of ds1
+spring.shardingsphere.datasource.ds1.jdbcUrl=jdbc:mysql://localhost:3306/ds-date?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+##################### props section #######################
+## Whether to print the sql statement
+spring.shardingsphere.props.sql-show=true
+##################### part of rules configuration #######################
+## Configure tab_user table rule
+spring.shardingsphere.rules.sharding.tables.t_user.actual-data-nodes=ds1.t_user_$->{0..2}
+spring.shardingsphere.rules.sharding.tables.t_date.actual-data-nodes=ds1.t_user_$->{0..2}
+spring.shardingsphere.rules.sharding.binding-tables=t_user,t_date
+## Configure table sharding strategy
+## Sharding column name
+spring.shardingsphere.rules.sharding.tables.t_user.table-strategy.standard.sharding-column=t_date
+## Sharding algorithm name
+spring.shardingsphere.rules.sharding.tables.t_user.table-strategy.standard.sharding-algorithm-name=table-date
+## Sharding column name
+spring.shardingsphere.rules.sharding.tables.t_date.table-strategy.standard.sharding-column=t_date
+## Sharding algorithm name
+spring.shardingsphere.rules.sharding.tables.t_date.table-strategy.standard.sharding-algorithm-name=table-date
+## Sharding algorithm configuration
+## Sharding algorithm type
+spring.shardingsphere.rules.sharding.sharding-algorithms.table-date.type=CLASS_BASED
+## Sharding algorithm properties
+spring.shardingsphere.rules.sharding.sharding-algorithms.table-date.props={ }

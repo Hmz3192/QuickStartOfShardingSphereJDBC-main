@@ -1,6 +1,8 @@
 package org.shardingtables.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.shardingtables.domain.Tdate;
 import org.shardingtables.domain.User;
 
 import java.util.List;
@@ -14,14 +16,16 @@ public interface DateMapper {
      * @param record message of user
      * @author: Jieker
      **/
-    int insert(User record);
+    int insert(Tdate record);
 
     /**
      * select all of data
      *
      * @author: Jieker
-     **/
-    List<User> showAll();
+     *
+     * @param date
+     * @param endDate*/
+    List<Tdate> showAll(@Param("date") String date, @Param("endDate") String endDate);
 
     /**
      * delete a user

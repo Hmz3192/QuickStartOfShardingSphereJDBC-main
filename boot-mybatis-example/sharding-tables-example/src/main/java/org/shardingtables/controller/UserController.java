@@ -19,9 +19,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("save-user")
+    @GetMapping("save-user")
     public String saveUser() {
         return userService.saveUser();
+    }
+
+    @GetMapping("addDate")
+    public String addDate() {
+        return userService.addDate();
     }
 
     @DeleteMapping("delete-user")
@@ -34,10 +39,17 @@ public class UserController {
         return userService.list();
     }
 
+    @GetMapping("list-date")
+    public Object listDate() {
+        return userService.showALL();
+    }
+
     @GetMapping("getUnion")
     public Object getUnion() {
-        String date = "2020-03-11";
-        return userService.getUnion(date);
+        String date = "2020-08-11";
+        String startDate = "2020-05-11";
+        String endDate = "2020-10-11";
+        return userService.getUnion(date, date, endDate);
     }
 
 }

@@ -33,6 +33,6 @@ public interface UserMapper {
      **/
     void deleteUser(Long id);
 
-    List<UserDatePojo> selectUnion(@Param("date")String date);
+    List<UserDatePojo> selectUnion(@Param("dDate")String date);
 
 }

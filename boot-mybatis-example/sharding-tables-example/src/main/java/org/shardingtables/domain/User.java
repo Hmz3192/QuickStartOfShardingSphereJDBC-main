@@ -15,8 +15,8 @@ import java.util.Date;
 public class User {
 
     private Long id;
-    private String t_user;
-    private String t_date;
-    private Long num;
+    private String str_user;
+    private String str_date;
+    private Long str_num;
 
 }

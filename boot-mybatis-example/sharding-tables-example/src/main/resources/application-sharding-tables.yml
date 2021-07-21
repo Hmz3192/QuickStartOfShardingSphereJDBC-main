@@ -17,18 +17,22 @@ spring:
             actualDataNodes: ds1.t_user_$->{0..2}
             table-strategy:
               standard:
-                sharding-column: t_date
+                sharding-column: str_date
                 sharding-algorithm-name: table-date
           t_date:
             actualDataNodes: ds1.t_date_$->{0..2}
             table-strategy:
               standard:
-                sharding-column: t_date
+                sharding-column: str_date
                 sharding-algorithm-name: table-date
-          sharding-algorithms:
-            table-date:
-              type: CLASS_BASED
-              props: {}
-###################### props section #######################
+        sharding-algorithms:
+          table-date:
+            type: CLASS_BASED
+            props: { }
+          range-date:
+            type: RANGE_DATE
+            props: { }
+    ###################### props section #######################
     props:
       sql-show: true
+      check-table-metadata-enabled: false
